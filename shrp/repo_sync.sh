@@ -99,8 +99,9 @@ esac
 
 
 # complete clean sources
-SRCDIRS="./sdk ./device ./vendor ./doc ./pdk ./compatibility ./art ./system ./platform_testing ./bootable ./external ./cts ./bionic ./frameworks ./toolchain ./lineage ./colors ./autoload ./build ./libcore ./dalvik ./android ./developers ./development ./packages ./tools ./syntax ./plugin ./libnativehelper ./hardware ./prebuilts"
+#SRCDIRS="./sdk ./device ./vendor ./doc ./pdk ./compatibility ./art ./system ./platform_testing ./bootable ./external ./cts ./bionic ./frameworks ./toolchain ./lineage ./colors ./autoload ./build ./libcore ./dalvik ./android ./developers ./development ./packages ./tools ./syntax ./plugin ./libnativehelper ./hardware ./prebuilts"
 #SRCDIRS=skip
+DELDIRS="device/ kernel/"
 
 if [ "$SRCDIRS" != "skip" ];then
 	for deldir in $SRCDIRS;do
@@ -123,7 +124,11 @@ fi
 #    cp $SRCPATH/.repo/local_manifests/set-twrp-version.xml.orig $SRCPATH/.repo/local_manifests/set-twrp-version.xml
 #    ;;
 #esac
- 
+
+# enforce a clean state
+repo forall -j15 -vc "git remote -v| head -n1; git reset --hard" || echo "SKIPPING WITH ERRORCODE: $?"
+
+# full sync
 repo sync -c -j20 --force-sync --no-tags --no-clone-bundle
 
 # clone the device tree FRESH
