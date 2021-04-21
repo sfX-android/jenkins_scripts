@@ -2,7 +2,7 @@ export HOME=${WORKSPACE}
 echo "--------- home set"
 
 # get global vars
-source $envfile
+[ ! -z $envfile ] && source $envfile
 [ -z $PREFIXFNAME ] && "echo missing param PREFIXFNAME" && exit 3
 [ -z $SRCPATH -a -z $srcpath ] &&  "echo missing param SRCPATH/srcpath ($SRCPATH/$srcpath)" && exit 3
 
