@@ -97,11 +97,8 @@ case $twrpversion in
     ;;
 esac
 
-
-# complete clean sources
-#SRCDIRS="./sdk ./device ./vendor ./doc ./pdk ./compatibility ./art ./system ./platform_testing ./bootable ./external ./cts ./bionic ./frameworks ./toolchain ./lineage ./colors ./autoload ./build ./libcore ./dalvik ./android ./developers ./development ./packages ./tools ./syntax ./plugin ./libnativehelper ./hardware ./prebuilts"
-#SRCDIRS=skip
-DELDIRS="device/ kernel/"
+# enforce a clean state
+DELDIRS="device/ kernel/ build/"
 
 if [ "$SRCDIRS" != "skip" ];then
 	for deldir in $SRCDIRS;do
@@ -112,20 +109,6 @@ if [ "$SRCDIRS" != "skip" ];then
     	[ -d $deldir ] && rm -rf $deldir
 	done
 fi
-
-#sed -i "s#<project.*path=\"bootable/recovery\".*#<project path=\"bootable/recovery\" name=\"android_bootable_recovery\"  remote=\"omnirom\" revision=\"$twrpbranch\" groups=\"pdk-cw-fs\" />#g" .repo/manifests/$TWRPXML
-#cp $SRCPATH/.repo/local_manifests/remove-twrp-v1.xml.orig $SRCPATH/.repo/local_manifests/remove-twrp-v1.xml
-
-#case $twrpversion in
-#	datamedia)
-#    cp $SRCPATH/.repo/local_manifests/set-twrp-version-datamedia.xml.orig $SRCPATH/.repo/local_manifests/set-twrp-version.xml
-#    ;;
-#    *)
-#    cp $SRCPATH/.repo/local_manifests/set-twrp-version.xml.orig $SRCPATH/.repo/local_manifests/set-twrp-version.xml
-#    ;;
-#esac
-
-# enforce a clean state
 repo forall -j15 -vc "git remote -v| head -n1; git reset --hard" || echo "SKIPPING WITH ERRORCODE: $?"
 
 # full sync
