@@ -100,8 +100,8 @@ esac
 # enforce a clean state
 DELDIRS="device/ kernel/ build/"
 
-if [ "$SRCDIRS" != "skip" ];then
-	for deldir in $SRCDIRS;do
+if [ "$DELDIRS" != "skip" ];then
+	for deldir in $DELDIRS;do
     	[ "$deldir" == "./.repo" ] && echo REPO IN DELDIR && exit 99
     	[ "$deldir" == ".repo" ] && echo REPO IN DELDIR && exit 99
     	[ "$deldir" == "./user-keys" ] && echo KEYS IN DELDIR && exit 99
