@@ -98,17 +98,20 @@ case $twrpversion in
 esac
 
 # enforce a clean state
-DELDIRS="device/ kernel/ build/"
+DELDIRS="device/ kernel/ vendor/lineage vendor/fdroid vendor/cm hardware/qcom \
+bionic \
+frameworks/av \
+frameworks/native \
+system/core \
+system/sepolicy"
 
-if [ "$DELDIRS" != "skip" ];then
-	for deldir in $DELDIRS;do
-    	[ "$deldir" == "./.repo" ] && echo REPO IN DELDIR && exit 99
-    	[ "$deldir" == ".repo" ] && echo REPO IN DELDIR && exit 99
-    	[ "$deldir" == "./user-keys" ] && echo KEYS IN DELDIR && exit 99
-    	[ "$deldir" == "user-keys" ] && echo KEYS IN DELDIR && exit 99
-    	[ -d $deldir ] && rm -rf $deldir
-	done
-fi
+for deldir in $DELDIRS;do
+    [ "$deldir" == "./.repo" ] && echo REPO IN DELDIR && exit 99
+    [ "$deldir" == ".repo" ] && echo REPO IN DELDIR && exit 99
+    [ "$deldir" == "./user-keys" ] && echo KEYS IN DELDIR && exit 99
+    [ "$deldir" == "user-keys" ] && echo KEYS IN DELDIR && exit 99
+    [ -d $deldir ] && rm -rvf $deldir
+done
 repo forall -j15 -vc "git remote -v| head -n1; git reset --hard" || echo "SKIPPING WITH ERRORCODE: $?"
 
 # full sync
