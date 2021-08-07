@@ -4,6 +4,7 @@ echo "--------- home set"
 # get global vars
 [ ! -z "$envfile" ] && source $envfile
 [ -z "$PREFIXFNAME" ] && "echo missing param PREFIXFNAME" && exit 3
+[ -z "$BDEVICE" ] && "echo missing param BDEVICE" && exit 3
 [ -z "$SRCPATH" -a -z "$srcpath" ] &&  "echo missing param SRCPATH/srcpath ($SRCPATH/$srcpath)" && exit 3
 
 [ -z "$srcpath" ] && srcpath=$SRCPATH
@@ -39,12 +40,12 @@ done
 [ -d out ] && rm -rf out
 
 # clean the real out dir
-[ -d  /ssd/${PREFIXFNAME}/out ] && rm -rf  /ssd/${PREFIXFNAME}/out
+[ -d  /ssd/${PREFIXFNAME}${BDEVICE}/out ] && rm -rf  /ssd/${PREFIXFNAME}${BDEVICE}/out
 
 # create the real out dir
-mkdir -p /ssd/${PREFIXFNAME}/out
+mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
 
 # symlink out to the real out dir
-ln -s /ssd/${PREFIXFNAME}/out out
+ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out out
 
 ls -la out
