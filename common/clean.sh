@@ -37,7 +37,7 @@ for deldir in $DELDIRS;do
 done
 
 # delete the symlink or dir
-[ -L out ] && rm out
+[ -L out ] && rm -v out
 [ -d out ] && rm -rf out
 
 # clean the real out dir
@@ -47,6 +47,6 @@ done
 mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
 
 # symlink out to the real out dir
-ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out out
+ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out
 
-ls -la out
+ls -la | grep out
