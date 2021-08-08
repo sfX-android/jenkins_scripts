@@ -26,6 +26,7 @@ vendor/nxp/opensource/sn100x/
 vendor/nxp/opensource/pn5xx/
 hardware/qcom/Android.mk
 packages/apps/Trebuchet
+hardware/marvell
 "
 
 for deldir in $DELDIRS;do
