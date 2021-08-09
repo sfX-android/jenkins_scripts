@@ -37,6 +37,14 @@ for deldir in $DELDIRS;do
     [ -d $deldir ] && rm -rvf $deldir
 done
 
+# known broken links after switching the android version
+LINKS="hardware/qcom/Android.mk"
+for l in $LINKS; do
+    if [ -L $l ];then
+        test -e $l || rm -v $l
+    fi
+done
+
 # delete the symlink or dir
 [ -L out ] && rm -v out
 [ -d out ] && rm -rf out
