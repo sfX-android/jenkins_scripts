@@ -80,7 +80,7 @@ case $twrpversion in
         # init SHRP manifest
         repo init -u $RECOVERYREPOINIT -b v3_10.0
         ;;
-    hotdog_locked)
+    hotdog_lockedbl)
         TWRPXML=default.xml
         androidbranch="android-10"
         DTBRANCH="${androidbranch}_shrp_lockedbl"
