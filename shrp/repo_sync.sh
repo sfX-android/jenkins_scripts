@@ -80,6 +80,19 @@ case $twrpversion in
         # init SHRP manifest
         repo init -u $RECOVERYREPOINIT -b v3_10.0
         ;;
+    hotdog_locked)
+        TWRPXML=default.xml
+        androidbranch="android-10"
+        DTBRANCH="${androidbranch}_shrp_lockedbl"
+        DTPATH=${SRCPATH}/device/oneplus/hotdog
+        DTURI=git@github.com:sfX-android/android_device_oneplus_hotdog.git
+        KERNPATH=kernel/oneplus/hotdog
+        
+        git clone git@github.com:sfX-android/android_local_manifests_hotdog.git -b ${androidbranch}.0_shrp_lockedbl ${SRCPATH}/.repo/local_manifests
+        
+        # init SHRP manifest
+        repo init -u $RECOVERYREPOINIT -b v3_10.0
+        ;;
     j5y17lte)
         TWRPXML=default.xml
         androidbranch="android-9.0"
