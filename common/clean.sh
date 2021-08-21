@@ -27,6 +27,12 @@ vendor/nxp/opensource/pn5xx/
 hardware/qcom/Android.mk
 packages/apps/Trebuchet
 hardware/marvell
+frameworks/av
+frameworks/native
+packages/apps/Updater
+system/core
+system/sepolicy
+build/make
 "
 
 for deldir in $DELDIRS;do
