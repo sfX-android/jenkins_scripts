@@ -59,14 +59,14 @@ if [ "$clean_out" == "true" ];then
 
     # clean the real out dir
     [ -d  /ssd/${PREFIXFNAME}${BDEVICE}/out ] && rm -rf  /ssd/${PREFIXFNAME}${BDEVICE}/out
-
-    # create the real out dir
-    mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
-
-    # symlink out to the real out dir
-    ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out
-
-    ls -la | grep out
 else
     echo "skipped cleaning out as requested"
 fi
+
+# create the real out dir
+[ ! -d "/ssd/${PREFIXFNAME}${BDEVICE}/out" ] && mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
+
+# symlink out to the real out dir
+[ ! -L out ] && ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out
+
+ls -la | grep out
