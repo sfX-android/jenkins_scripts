@@ -33,6 +33,7 @@ packages/apps/Updater
 system/core
 system/sepolicy
 build/make
+system/security
 "
 
 for deldir in $DELDIRS;do
@@ -51,17 +52,21 @@ for l in $LINKS; do
     fi
 done
 
-# delete the symlink or dir
-[ -L out ] && rm -v out
-[ -d out ] && rm -rf out
+if [ "$clean_out" == "true" ];then
+    # delete the symlink or dir
+    [ -L out ] && rm -v out
+    [ -d out ] && rm -rf out
 
-# clean the real out dir
-[ -d  /ssd/${PREFIXFNAME}${BDEVICE}/out ] && rm -rf  /ssd/${PREFIXFNAME}${BDEVICE}/out
+    # clean the real out dir
+    [ -d  /ssd/${PREFIXFNAME}${BDEVICE}/out ] && rm -rf  /ssd/${PREFIXFNAME}${BDEVICE}/out
 
-# create the real out dir
-mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
+    # create the real out dir
+    mkdir -p /ssd/${PREFIXFNAME}${BDEVICE}/out
 
-# symlink out to the real out dir
-ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out
+    # symlink out to the real out dir
+    ln -s /ssd/${PREFIXFNAME}${BDEVICE}/out
 
-ls -la | grep out
+    ls -la | grep out
+else
+    echo "skipped cleaning out as requested"
+fi
