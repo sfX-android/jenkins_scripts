@@ -60,7 +60,10 @@ if [ "$clean_out" == "true" ];then
     # clean the real out dir
     [ -d  /ssd/${PREFIXFNAME}${BDEVICE}/out ] && rm -rf  /ssd/${PREFIXFNAME}${BDEVICE}/out
 else
-    echo "skipped cleaning out as requested"
+    find out -name build.prop -delete || true
+    find out -name boot.img -delete || true
+    find out -name blrecovery.img -delete || true
+    echo "skipped full cleaning out/ dir as requested"
 fi
 
 # create the real out dir
