@@ -20,10 +20,9 @@ kernel/
 vendor/lineage
 vendor/fdroid
 vendor/cm
+vendor/nxp
 hardware/qcom/sm8150/
 hardware/qcom-caf
-vendor/nxp/opensource/sn100x/
-vendor/nxp/opensource/pn5xx/
 hardware/qcom/Android.mk
 packages/apps/Trebuchet
 hardware/marvell
