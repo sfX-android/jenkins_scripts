@@ -28,6 +28,7 @@ packages/apps/Trebuchet
 hardware/marvell
 frameworks/av
 frameworks/native
+frameworks/ml
 packages/apps/Updater
 system/core
 system/sepolicy
