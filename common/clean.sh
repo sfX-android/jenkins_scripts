@@ -34,6 +34,7 @@ system/core
 system/sepolicy
 build/make
 system/security
+test/
 "
 
 for deldir in $DELDIRS;do
